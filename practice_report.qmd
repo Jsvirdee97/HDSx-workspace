@@ -1,6 +1,6 @@
 ---
 title: "My First Report"
-author: "Your Name"
+author: "Jas Virdee"
 format:
   html:
     embed-resources: true
@@ -36,7 +36,7 @@ hist(patients$age,
 
 ## Your turn
 
-- Add a sentence here describing what you notice in the chart.
+- The chart showcases the **age distribution** of patients of this report
 - Render again and check that both your sentence and the chart appear.
 
 When you are happy with the result, **commit and sync** your work (the Week 2
