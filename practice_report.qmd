@@ -21,14 +21,14 @@ The code chunk below reads a small practice dataset from the `data/` folder and
 shows the first few rows.
 
 ```{r}
-patients <- read.csv("data/patients.csv")
-head(patients)
+my_data <- read.csv("data/patients.csv")
+head(my_data)
 ```
 
 ## A first chart
 
 ```{r}
-hist(patients$age,
+hist(my_data$age,
      main = "Age distribution of practice patients",
      xlab = "Age (years)",
      col  = "steelblue")
