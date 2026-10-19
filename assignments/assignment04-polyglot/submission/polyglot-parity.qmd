@@ -1,0 +1,62 @@
+---
+title: "Assignment 4: Polyglot"
+format: html
+---
+
+## Load your data
+
+```{r}
+nhanes <- readr::read_csv(
+	"examples/nhanes-equity/data/nhanes_equity_v6.csv",
+	show_col_types = FALSE
+)
+```
+
+## Descriptive BMI Summary
+
+```{r}
+summarize_bmi <- function(data) {
+	data |>
+		dplyr::filter(
+			!is.na(IncomeGroup),
+			!is.na(Gender),
+			!is.na(BMI)
+		) |>
+		dplyr::group_by(IncomeGroup, Gender) |>
+		dplyr::summarise(
+			n = dplyr::n(),
+			mean_BMI = mean(BMI),
+			sd_BMI = stats::sd(BMI),
+			median_BMI = stats::median(BMI),
+			.groups = "drop"
+		) |>
+		dplyr::arrange(IncomeGroup, Gender)
+}
+
+bmi_summary <- summarize_bmi(nhanes)
+
+bmi_summary
+```
+
+## R and Python Parity
+
+The table below compares the R summary with the pandas summary produced by
+`summarize_bmi` in `translation.ipynb`. Summary statistics are rounded to two
+decimal places.
+
+| Check | R | Python | Match |
+|:--|--:|--:|:--:|
+| Input row count | 105,626 | 105,626 | Yes |
+| Rows after filtering missing `IncomeGroup`, `Gender`, or `BMI` | 87,647 | 87,647 | Yes |
+| Group 1 label | High Income (>3.5) / Female | High Income (>3.5) / Female | Yes |
+| Group 1 summary (n; mean BMI; SD BMI; median BMI) | 11,743; 25.74; 7.51; 24.60 | 11,743; 25.74; 7.51; 24.60 | Yes |
+| Group 2 label | High Income (>3.5) / Male | High Income (>3.5) / Male | Yes |
+| Group 2 summary (n; mean BMI; SD BMI; median BMI) | 12,095; 26.11; 6.81; 26.00 | 12,095; 26.11; 6.81; 26.00 | Yes |
+| Group 3 label | Low Income (<1.3) / Female | Low Income (<1.3) / Female | Yes |
+| Group 3 summary (n; mean BMI; SD BMI; median BMI) | 16,548; 25.95; 8.65; 24.66 | 16,548; 25.95; 8.65; 24.66 | Yes |
+| Group 4 label | Low Income (<1.3) / Male | Low Income (<1.3) / Male | Yes |
+| Group 4 summary (n; mean BMI; SD BMI; median BMI) | 14,847; 24.05; 7.17; 23.30 | 14,847; 24.05; 7.17; 23.30 | Yes |
+| Group 5 label | Middle Income / Female | Middle Income / Female | Yes |
+| Group 5 summary (n; mean BMI; SD BMI; median BMI) | 16,432; 26.39; 8.20; 25.30 | 16,432; 26.39; 8.20; 25.30 | Yes |
+| Group 6 label | Middle Income / Male | Middle Income / Male | Yes |
+| Group 6 summary (n; mean BMI; SD BMI; median BMI) | 15,982; 25.52; 7.22; 25.10 | 15,982; 25.52; 7.22; 25.10 | Yes |

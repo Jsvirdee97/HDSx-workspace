@@ -1,0 +1,12 @@
+Dependencies used by the polyglot BMI summary
+
+R packages:
+- readr: reads the NHANES CSV file.
+- dplyr: filters, groups, summarizes, and arranges the data.
+- stats: supplies the sample standard deviation and median functions; included with R.
+
+Python packages:
+- pandas: reads the CSV file and computes the grouped summary.
+
+The notebook also uses Python's standard-library sys and pathlib modules to
+locate helpers.py; these do not require separate installation.
