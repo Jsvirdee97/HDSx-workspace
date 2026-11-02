@@ -1,0 +1,42 @@
+VISUAL AUDIT — NHANES BMI BY INCOME
+
+Plot question
+How did the unweighted mean BMI vary across the supplied NHANES cycles for
+adults aged 20–80 in each income group?
+
+Issues and categories
+
+1. Category: Correctness — analysis cohort does not match the subtitle.
+   The summary does not filter on Age, even though the subtitle says adults
+   age 20–80. Corrected by including ages 20 through 80, inclusive, and
+   excluding records with missing age.
+
+2. Category: Correctness — most survey cycles are omitted.
+   The summary keeps only the first and last cycles, so the plot cannot support
+   a claim about change across every cycle. Corrected by using every cycle in
+   the supplied file and ordering them chronologically. The supplied data has
+   no 2019–2020 cycle.
+
+3. Category: Design — the y-axis removes plotted values.
+   Limits of 24–28 exclude many group means above 28, causing ggplot to drop
+   observations and making the chart incomplete. Corrected with an axis that
+   includes all plotted means and starts at zero.
+
+4. Category: Interpretation — the title makes an unsupported causal claim.
+   Grouped descriptive means do not show that low income drives BMI or obesity.
+   Corrected with a neutral title describing the measure and comparison.
+
+5. Category: Interpretation — the subtitle overstates the evidence.
+   “Climbed steadily across every NHANES cycle” is inconsistent with the
+   endpoint-only data shown and the fluctuations in the full cycle summaries.
+   Corrected by showing every available cycle and describing the cohort and
+   supplied date range without asserting a steady trend.
+
+6. Category: Interpretation — “obesity” is not the plotted outcome.
+   The plot displays mean BMI, not obesity prevalence or the number of adults
+   meeting an obesity threshold. Corrected by labeling the outcome as mean BMI.
+
+Final caption
+Unweighted sample means; excludes records missing BMI, income group, or age.
+The supplied file has no 2019–2020 cycle. Descriptive means do not establish
+causation or account for the NHANES survey design.

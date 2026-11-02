@@ -1,0 +1,85 @@
+---
+title: "Assignment 6 EDA Note"
+format: html
+---
+
+## Load the NHANES data
+
+```{r}
+#| message: false
+library(tidyverse)
+
+nhanes <- read_csv(
+  "examples/nhanes-equity/data/nhanes_equity_v6.csv",
+  show_col_types = FALSE
+)
+```
+
+## Preview
+
+```{r}
+dim(nhanes)
+head(nhanes)
+```
+
+## Cohort
+```{r}
+income_order <- c("Low Income (<1.3)", "Middle Income", "High Income (>3.5)")
+
+analysis_df <- nhanes |>
+  filter(Age >= 20, Age <= 80) |>
+  mutate(IncomeGroup = factor(IncomeGroup, levels = income_order))
+
+cohort_counts <- tibble(
+  step = c("Prepared CSV rows", "Rows after age 20-80 restriction"),
+  n = c(nrow(nhanes), nrow(analysis_df))
+)
+
+knitr::kable(cohort_counts)
+```
+
+## Missingness
+
+```{r}
+key_vars <- c("BMI", "Age", "IncomeGroup", "Gender", "Race", "Cycle")
+
+missingness <- tibble(variable = key_vars) |>
+  mutate(
+    missing_n = vapply(analysis_df[key_vars], function(x) sum(is.na(x)), numeric(1)),
+    missing_percent = round(100 * missing_n / nrow(analysis_df), 1)
+  )
+
+knitr::kable(missingness)
+```
+
+
+## Table 1 Summary
+
+```{r}
+mean_sd <- function(x) {
+  sprintf("%.1f (%.1f)", mean(x, na.rm = TRUE), sd(x, na.rm = TRUE))
+}
+
+table1 <- analysis_df |>
+  filter(!is.na(IncomeGroup)) |>
+  group_by(IncomeGroup) |>
+  summarise(
+    N = n(),
+    `BMI, mean (SD)` = mean_sd(BMI),
+    `Age, mean (SD)` = mean_sd(Age),
+    .groups = "drop"
+  ) |>
+  mutate(
+    IncomeGroup = factor(
+      IncomeGroup,
+      levels = c("Low Income (<1.3)", "Middle Income", "High Income (>3.5)")
+    )
+  ) |>
+  arrange(IncomeGroup)
+
+knitr::kable(table1, caption = "Summary by income group")
+```
+
+## Methods note
+
+NHANES data for adults aged 20–80 were summarized by income group using BMI and age. Missing values were checked for BMI, age, income, gender, race, and survey cycle; records missing income were excluded from the summary.
