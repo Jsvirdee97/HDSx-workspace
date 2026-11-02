@@ -11,4 +11,4 @@ Classroom-use boundary:
 descriptive learning only, not population inference
 
 Privacy or stewardship caution:
-No row-level data uploaded to external AI tools.
+No row-level data uploaded to external AI tools. To avoid sensitive data being accessed by AI

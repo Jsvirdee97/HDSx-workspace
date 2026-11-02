@@ -82,4 +82,4 @@ knitr::kable(table1, caption = "Summary by income group")
 
 ## Methods note
 
-NHANES data for adults aged 20–80 were summarized by income group using BMI and age. Missing values were checked for BMI, age, income, gender, race, and survey cycle; records missing income were excluded from the summary.
+NHANES data for adults aged 20–80 were summarized by income group using BMI and Age. Missing values were checked for BMI, age, income, gender, race, and survey cycle; records missing income were excluded from the summary.

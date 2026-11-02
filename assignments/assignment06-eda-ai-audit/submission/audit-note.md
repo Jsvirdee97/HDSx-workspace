@@ -38,7 +38,7 @@ Row removal doesn’t demonstrate completeness or publication readiness, and may
 Corrected Version:
 “Report missingness and exclusions, and describe how they may affect interpretation.”
 
-Error 5:
+Error 5):
 Error:
 The comment claims the data was downloaded “last week,” and one candidate path is specific to a Windows user.
 
