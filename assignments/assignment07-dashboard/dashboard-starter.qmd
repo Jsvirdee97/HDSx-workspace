@@ -12,6 +12,7 @@ Copy this file to
 `assignments/assignment07-dashboard/submission/dashboard.qmd` before editing.
 Keep this original starter unchanged so you can compare your adaptation with it.
 
+
 ## Where this fits
 
 This is the **required core artifact** for Assignment 7. The Shiny exemplar

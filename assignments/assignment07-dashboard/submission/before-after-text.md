@@ -1,0 +1,4 @@
+| Original text | Revised text | Why the revision helps |
+|---|---|---|
+
+| Descriptive, unweighted classroom summary. Missing BMI, income group, cycle, and out-of-cohort ages are excluded. | Average Body Mass Index (BMI) among adults aged 20–80 across NHANES survey cycles for the selected income group. | The existing caption uses technical language such as "unweighted" and "out-of-cohort ages," which may not be immediately understandable to a briefing group. The caption could be improved by using clearer language to describe the dataset, the population included, and the limitations of the findings. |
